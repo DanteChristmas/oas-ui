@@ -1,0 +1,131 @@
+source 'https://rubygems.org'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.4'
+
+# Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.2'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+gem 'hashie'
+
+# Calendar Export
+gem 'icalendar'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use unicorn as the app server
+gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+
+# We need Faraday to do our HTTP proxy requests for us:
+gem 'faraday'
+
+# Use to pull angular templates into asset pipeline
+gem 'angular-rails-templates', '0.0.7'
+
+# SEO / Meta Tags
+gem 'meta-tags'
+
+gem 'amp', git: 'git@bitbucket.org:sportslabs/amp-ruby-sdk.git', branch: 'master'
+
+# # Get the Oas API Engine
+gem 'oas_api', git: 'git@bitbucket.org:sportslabs/oas-ruby-api.git', branch: 'master' , tag: 'v1.0.9'
+# gem 'oas_api', '0.0.1'
+
+#Imgix resizer gem
+gem 'imgix'
+
+# rake should be implicit
+#gem 'rake', '~> 10.1.1'
+
+#
+# Performance Metric Gems
+#
+gem 'nunes'
+gem 'statsd-ruby'
+gem 'newrelic_rpm'
+
+# Sitemap Generation:
+gem 'sitemap_generator'  # Compatible with Rails 2, 3 & 4 and tested with Ruby REE, 1.9.2 & 1.9.3
+
+# Job Scheduling (for sitemap generation)
+gem 'rufus-scheduler'
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+
+# For Memcache
+gem 'dalli'
+
+# For Cron Scheduling
+gem 'whenever'
+
+gem 'aws-sdk', '~> 1.39.0'
+
+group :development, :integration do
+  gem 'unicorn-worker-killer'
+  gem 'sinatra', '>= 1.3.0', :require => nil
+end
+
+group :test do
+  gem 'webmock'
+end
+
+gem 'redis-rails'
+gem 'nokogiri', '1.6.3.1'
+
+gem 'rest-client'
+gem 'json'
+
+#
+# Development / Testing Gems
+#
+group :development, :test do
+  #gem "rack-insight", git: 'git@github.com:pboling/rack-insight.git', :branch => 'master' # CURRENTLY BROKEN, but we do want this when it's fixed.
+  gem 'oink'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'guard-jasmine'  # TODO - get this setup when it's fixed: https://github.com/netzpirat/guard-jasmine/issues/161
+  gem 'jasmine-rails'
+
+  gem 'rdoc'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  # gem 'ci_reporter', git: 'git@github.com:tylerkovacs/ci_reporter.git', :branch => 'master'
+  gem "metric_fu"
+  gem 'simplecov', :require => false
+  gem "simplecov-rcov", "~> 0.2.3"
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
+end

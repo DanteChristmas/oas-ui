@@ -1,0 +1,69 @@
+<div class="page_home" ng-controller="HomeLogicCtrl" ng-cloak>
+
+  <% if !@superhero %>
+    <div class="home_custom_hero">
+      <div class="page_section">
+        <%= render "/shared/custom_hero" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="home_hero">
+      <%= render "/home/hero" %>
+    </div>
+  <% end %>
+
+  <div class="home_schedule">
+    <div class="page_section">
+      <%= render "/home/schedule" %>
+    </div>
+  </div>
+
+  <div class="home_promo">
+    <%= render "/home/promo" %>
+  </div>
+
+  <div class="home_highlights">
+    <div class="page_section">
+      <%= render "/home/highlights" %>
+    </div>
+  </div>
+
+  <div class="home_content_wall">
+    <div class="page_section">
+      <%= render "/home/content_wall" %>
+    </div>
+  </div>
+
+  <div class="home_ad_bottom">
+    <%= render "/shared/ad_728_bottom" %>
+  </div>
+</div>
+
+<script src="//player.ooyala.com/v3/<%=@ooyala_video_player_id%>?tweaks=android-enable-hls"></script>
+
+<script type="text/javascript">
+  angular.module('oasWeb').controller('HomeCtrl', ['$scope', function($scope) {
+    <% if !@superhero %>
+      $scope.superHeroList = <%= raw @super_override.to_json %>;
+    <% else %>
+      $scope.superHeroList = <%= (raw @superhero.to_json) %>;
+    <% end %>
+    $scope.networkList = <%=(raw @network_list.to_json)%>;
+    $scope.championships = <%= (raw @championships.to_json) %>;
+    $scope.sports = <%= (raw @s3_sports.to_json) %>;
+    $scope.contentWallList = <%= raw @content_wall.to_json %>;
+  }]);
+</script>
+
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "http://<%=@hostname%>",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "http://<%=@hostname%>/search?term={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+</script>

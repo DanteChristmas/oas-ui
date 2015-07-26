@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#" ng-app="oasWeb" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <% if @google_webmaster_tools_key %>
+    <meta name="google-site-verification" content="<%= @google_webmaster_tools_key %>">
+    <% end %>
+    <% if @last_modified %>
+    <meta http-equiv="last-modified" content="<%= @last_modified %>">
+    <% end %>
+    <meta name="author" content="<%=@author%>">
+    <%= display_meta_tags %>
+    <![if !(lte IE 8)]>
+      <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png?v=4">
+      <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png?v=4">
+      <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png?v=4">
+      <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png?v=4">
+      <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png?v=4">
+      <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png?v=4">
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png?v=4">
+      <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png?v=4">
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png?v=4">
+      <link rel="icon" type="image/png" href="/favicon-192x192.png?v=4" sizes="192x192">
+      <link rel="icon" type="image/png" href="/favicon-160x160.png?v=4" sizes="160x160">
+      <link rel="icon" type="image/png" href="/favicon-96x96.png?v=4" sizes="96x96">
+      <link rel="icon" type="image/png" href="/favicon-32x32.png?v=4" sizes="32x32">
+      <link rel="icon" type="image/png" href="/favicon-16x16.png?v=4" sizes="16x16">
+    <![endif]>
+    <link href="/favicon.ico?v=3" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <![if !(lte IE 8)]>
+      <%= stylesheet_link_tag "layout_combined", media: "all" %>
+      <%= stylesheet_link_tag "theme_combined", media: "all" %>
+      <%= stylesheet_link_tag "pages/#{params[:controller]}" %>
+      <%= javascript_include_tag "application" %>
+      <%if request.ssl? %>
+        <script src="//cdns.gigya.com/JS/gigya.js?apiKey=<%= raw Rails.configuration.gigya_key %>"></script>
+      <% else %>
+        <script src="//cdn.gigya.com/JS/gigya.js?apiKey=<%= raw Rails.configuration.gigya_key %>"></script>
+      <% end %>
+    <![endif]>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="slidemenu_push" click-shift-nav>
+    <!--[if lte IE 8]>
+      <%= render "shared/ie8_msg" %>
+    <![endif]-->
+
+    <![if (gte IE 9)|(!IE)]>
+    <div class="slidemenu slidemenu_vertical slidemenu_left" id="slidemenu">
+      <%= render "shared/global_nav_menu" %>
+    </div>
+
+    <div class="content_slide slidemenu_push" id="content_slide">
+      <%= render "shared/global_nav" %>
+      <%= render "shared/global_content" %>
+      <%= render "shared/global_footer" %>
+    </div>
+    <![endif]>
+
+    <%= render "shared/global_analytics" %>
+    <% if !@kill_paywall %>
+      <gigya-login organization-code="'ksu'"></gigya-login>
+    <% end %>
+  </body>
+</html>

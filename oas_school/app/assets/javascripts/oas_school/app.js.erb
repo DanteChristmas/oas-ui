@@ -1,0 +1,272 @@
+'use strict';
+
+angular.module('oasWeb', ['ngRoute', 'templates', 'html5.placeholder', 'ngSanitize', 'ngCookies', 'angular-table', 'angulartics', 'angulartics.google.analytics', 'oasServices', 'sl.frameMessenger'])
+//front end configs
+.constant('ooyalaAdSetCodes', <%= Rails.configuration.try(:ooyala_ad_set_codes).to_json %>)
+.constant('facebookAppId', <%= Rails.configuration.try(:facebook_app_id).to_json %>)
+.constant('dfpConfig', {
+  pathPrefix: <%= Rails.configuration.try(:dfp_path_prefix).to_json %>,
+  ads: {
+    '970x60:T1': {
+      dims: [970, 60],
+      responsive: {
+        viewport: [970, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '970x60:T2': {
+      dims: [970, 60],
+      responsive: {
+        viewport: [970, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 2
+    },
+
+    '970x60:T3': {
+      dims: [970, 60],
+      responsive: {
+        viewport: [970, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 3
+    },
+
+    '970x60:T4': {
+      dims: [970, 60],
+      responsive: {
+        viewport: [970, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 4
+    },
+
+    '728x90:T1': {
+      dims: [728, 90],
+      responsive: {
+        viewport: [728, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '728x90:B2': {
+      dims: [728, 90],
+      responsive: {
+        viewport: [728, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 2
+    },
+
+    '300X250:H1' : {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '180x150:H1': {
+      dims: [180, 150],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '180x150:H2': {
+      dims: [180, 150],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 2
+    },
+
+    '180x150:H3': {
+      dims: [180, 150],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 3
+    },
+
+    '180x150:H4': {
+      dims: [180, 150],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 4
+    },
+
+    '180x150:H5': {
+      dims: [180, 150],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 5
+    },
+
+    //DN wall
+    '300x250:H10': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 10
+    },
+
+    '300x250:H11': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 11
+    },
+
+    '300x250:H12': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 12
+    },
+
+    '300x250:H13': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 13
+    },
+
+    '300x250:H14': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 14
+    },
+
+    '300x250:H15': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 15
+    },
+
+    '300x250:H16': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 16
+    },
+
+    '300x250:H17': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 17
+    },
+
+    //home promo
+    '728x90:H3': {
+      dims: [728, 90],
+      responsive: {
+        viewport: [728, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 3
+    },
+
+    '728x90:H4': {
+      dims: [728, 90],
+      responsive: {
+        viewport: [728, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 4
+    },
+
+    '728x90:H5': {
+      dims: [728, 90],
+      responsive: {
+        viewport: [728, 0],
+        mobileAd: [320, 50]
+      },
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 5
+    },
+
+    '300x250:R1': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '300x250:R2': {
+      dims: [300, 250],
+      isVideoCompanion: false,
+      pos: 2
+    },
+
+    '300x250:COMP2': {
+      dims: [300, 250],
+      isVideoCompanion: true,
+      isOOPCreative: false,
+      pos: 1
+    },
+
+    '225x15:SPON1': {
+      dims: [225, 15],
+      isVideoCompanion: true,
+      isOOPCreative: false,
+      pos: 1
+    }
+  }
+})
+
+.config(['$analyticsProvider', function($analyticsProvider){
+  //analytics settings
+  $analyticsProvider.firstPageview(true);
+}])
+
+.run( ['$log', '$window', '$sce', '$rootScope', 'ValidateUtilService', function($log, $window, $sce, $rootScope, ValidateUtilService) {
+  $rootScope.organizationCode = "<%= Rails.configuration.organization_code %>";
+  if(ValidateUtilService.isSet($window.gigya)) {
+    gigya.accounts.getAccountInfo({
+      callback: function (eventData) {
+        if((eventData && eventData.errorCode == 0) || (eventData && eventData.eventName == "login")) {
+          $log.info(eventData);
+          $rootScope.user = eventData;
+          $rootScope.$broadcast('gigya-login-success');
+        } else {
+          $log.warn('Gigya Authentication Failed.');
+          $log.info(eventData);
+        }
+      }
+    });
+  }
+
+
+  //css polyfill
+  $window.viewportUnitsBuggyfill.init();
+
+  //timezone bootstrap
+  $window.timezoneJS.timezone.zoneFileBasePath = '/tz';
+  return $window.timezoneJS.timezone.init({
+    async: false
+  });
+
+  //gigya login check
+
+}]);
